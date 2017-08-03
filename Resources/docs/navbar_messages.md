@@ -17,9 +17,9 @@ namespace MyAdminBundle\Model;
 use Avanzu\AdminThemeBundle\Model\MessageInterface as ThemeMessage
 
 class MessageModel implements  ThemeMessage {
-	// ...
-	// implement interface methods
-	// ...
+    // ...
+    // implement interface methods
+    // ...
 }
 ```
 
@@ -36,19 +36,19 @@ use MyAdminBundle\Model\MessageModel;
 
 class MyMessageListListener {
 
-	// ...
+    // ...
 
-	public function onListMessages(MessageListEvent $event) {
+    public function onListMessages(MessageListEvent $event) {
 
-		foreach($this->getMessages() as $message) {
-			$event->addMessage($message);
-		}
+        foreach($this->getMessages() as $message) {
+            $event->addMessage($message);
+        }
 
-	}
+    }
 
-	protected function getMessages() {
-		// retrieve your message models/entities here
-	}
+    protected function getMessages() {
+        // retrieve your message models/entities here
+    }
 
 }
 ```
@@ -58,17 +58,17 @@ Finally, you need to attach your new listener to the event system:
 ```xml
 <!-- Resources/config/services.xml -->
 <parameters>
-	<!-- ... -->
-	<parameter key="my_admin_bundle.message_list_listener.class">MyAdminBundle\EventListener\MyMessageListListener</parameter>
-	<!-- ... -->
+    <!-- ... -->
+    <parameter key="my_admin_bundle.message_list_listener.class">MyAdminBundle\EventListener\MyMessageListListener</parameter>
+    <!-- ... -->
 </parameters>
 <services>
-	<!-- ... -->
-	<service id="my_admin_bundle.message_list_listener" class="%my_admin_bundle.message_list_listener.class%">
+    <!-- ... -->
+    <service id="my_admin_bundle.message_list_listener" class="%my_admin_bundle.message_list_listener.class%">
         <tag name="kernel.event_listener" event="theme.messages" method="onListMessages" />
     </service>
-	
-	<!-- ... -->
+    
+    <!-- ... -->
 </services>
 ```
 [1]: component_events.md

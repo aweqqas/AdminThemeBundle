@@ -22,7 +22,7 @@ avanzu_admin_theme:
 
 Fetch vendor scripts
 
-	app/console avanzu:admin:fetch-vendor
+    app/console avanzu:admin:fetch-vendor
 
 The vendor scripts will be stored under `Resources/public/vendor`
 

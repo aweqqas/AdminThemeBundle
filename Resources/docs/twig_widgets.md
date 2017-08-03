@@ -11,10 +11,10 @@ The global/general configuration for the box-widget can be defined using the bun
 
 avanzu_admin_theme:
     theme:
-		# ... 
+        # ... 
         widget:
-        	# relates to box-<type>, default: primary
-        	type: primary 
+            # relates to box-<type>, default: primary
+            type: primary 
             # will add .with-border to .box-header, default: true
             bordered: true
             # will add a collapse button to the widget toolbar, default: true
@@ -37,7 +37,7 @@ avanzu_admin_theme:
 ```twig
 {% embed 'AvanzuAdminThemeBundle:Widgets:box-widget.html.twig' %}
     {% block box_title %}
-    	{# Title goes here #}
+        {# Title goes here #}
     {% endblock %}
     {% block box_body %}
         {# Content goes here #}

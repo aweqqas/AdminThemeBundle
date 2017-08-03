@@ -17,9 +17,9 @@ namespace MyAdminBundle\Model;
 use Avanzu\AdminThemeBundle\Model\TaskInterface as ThemeTask
 
 class TaskModel implements  ThemeTask {
-	// ...
-	// implement interface methods
-	// ...
+    // ...
+    // implement interface methods
+    // ...
 }
 ```
 ### Event Listener
@@ -35,19 +35,19 @@ use MyAdminBundle\Model\TaskModel;
 
 class MyTaskListListener {
 
-	// ...
+    // ...
 
-	public function onListTasks(TaskListEvent $event) {
+    public function onListTasks(TaskListEvent $event) {
 
-		foreach($this->getTasks() as $task) {
-			$event->addTask($task);
-		}
+        foreach($this->getTasks() as $task) {
+            $event->addTask($task);
+        }
 
-	}
+    }
 
-	protected function getTasks() {
-		// retrieve your task models/entities here
-	}
+    protected function getTasks() {
+        // retrieve your task models/entities here
+    }
 
 }
 ```
@@ -57,17 +57,17 @@ Finally, you need to attach your new listener to the event system:
 ```xml
 <!-- Resources/config/services.xml -->
 <parameters>
-	<!-- ... -->
-	<parameter key="my_admin_bundle.task_list_listener.class">MyAdminBundle\EventListener\MyTaskListListener</parameter>
-	<!-- ... -->
+    <!-- ... -->
+    <parameter key="my_admin_bundle.task_list_listener.class">MyAdminBundle\EventListener\MyTaskListListener</parameter>
+    <!-- ... -->
 </parameters>
 <services>
-	<!-- ... -->
-	<service id="my_admin_bundle.task_list_listener" class="%my_admin_bundle.task_list_listener.class%">
+    <!-- ... -->
+    <service id="my_admin_bundle.task_list_listener" class="%my_admin_bundle.task_list_listener.class%">
         <tag name="kernel.event_listener" event="theme.tasks" method="onListTasks" />
     </service>
-	
-	<!-- ... -->
+    
+    <!-- ... -->
 </services>
 ```
 

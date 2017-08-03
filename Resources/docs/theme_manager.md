@@ -9,11 +9,11 @@ In order to register a stylesheet or javascript in a controller
 ```php
 // register stylesheet
 $this->get('avanzu_admin_theme.theme_manager')
-	 ->registerStyle('my-style-id', 'relative/path/to/style.css');
+     ->registerStyle('my-style-id', 'relative/path/to/style.css');
 
 // register javascript
 $this->get('avanzu_admin_theme.theme_manager')
-	 ->registerScript('my-script-id', 'relative/path/to/script.js');
+     ->registerScript('my-script-id', 'relative/path/to/script.js');
 ```
 
 Linking to stylesheets in your templates 
@@ -21,7 +21,7 @@ Linking to stylesheets in your templates
 ```twig
 {# stylesheets #}
 {% for style in admin_theme.styles %}
-	 <link rel="stylesheet" href="{{ asset(style) }}" />
+     <link rel="stylesheet" href="{{ asset(style) }}" />
 {% endfor %}
 ```
 
@@ -29,7 +29,7 @@ Linking to scripts in your templates
 
 ```twig
 {% for script in admin_theme.scripts %}
-	 <script src="{{ asset(script) }}" ></script>
+     <script src="{{ asset(script) }}" ></script>
 {% endfor %}
 ``` 
 
@@ -60,7 +60,7 @@ javascripts need to be loaded in the `<head>` section instead of just before the
 _Group names are not following any convention, feel free to name your groups how you like._
 
 ```php
-$manager = 	$this->get('avanzu_admin_theme.theme_manager');
+$manager =     $this->get('avanzu_admin_theme.theme_manager');
 
 // use the "head" group instead of the default one
 $manager->registerScript('my-script-id', 'relative/path/to/script.js', array(), 'head');
@@ -71,6 +71,6 @@ Linking to groups other than the default one inside your templates looks a bit d
 
 ```twig
 {% for script in admin_theme.getScripts('head') %}
-	 <script src="{{ asset(script) }}" ></script>
+     <script src="{{ asset(script) }}" ></script>
 {% endfor %}
 ``` 

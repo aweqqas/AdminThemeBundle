@@ -17,9 +17,9 @@ namespace MyAdminBundle\Model;
 use Avanzu\AdminThemeBundle\Model\NotificationInterface as ThemeNotification
 
 class NotificationModel implements  ThemeNotification {
-	// ...
-	// implement interface methods
-	// ...
+    // ...
+    // implement interface methods
+    // ...
 }
 ```
 ### Event Listener
@@ -35,19 +35,19 @@ use MyAdminBundle\Model\NotificationModel;
 
 class MyNotificationListListener {
 
-	// ...
+    // ...
 
-	public function onListNotifications(NotificationListEvent $event) {
+    public function onListNotifications(NotificationListEvent $event) {
 
-		foreach($this->getNotifications() as $Notification) {
-			$event->addNotification($Notification);
-		}
+        foreach($this->getNotifications() as $Notification) {
+            $event->addNotification($Notification);
+        }
 
-	}
+    }
 
-	protected function getNotifications() {
-		// retrieve your Notification models/entities here
-	}
+    protected function getNotifications() {
+        // retrieve your Notification models/entities here
+    }
 
 }
 ```
@@ -57,17 +57,17 @@ Finally, you need to attach your new listener to the event system:
 ```xml
 <!-- Resources/config/services.xml -->
 <parameters>
-	<!-- ... -->
-	<parameter key="my_admin_bundle.notificationotification_list_listener.class">MyAdminBundle\EventListener\MyNotificationListListener</parameter>
-	<!-- ... -->
+    <!-- ... -->
+    <parameter key="my_admin_bundle.notificationotification_list_listener.class">MyAdminBundle\EventListener\MyNotificationListListener</parameter>
+    <!-- ... -->
 </parameters>
 <services>
-	<!-- ... -->
-	<service id="my_admin_bundle.notification_list_listener" class="%my_admin_bundle.notification_list_listener.class%">
+    <!-- ... -->
+    <service id="my_admin_bundle.notification_list_listener" class="%my_admin_bundle.notification_list_listener.class%">
         <tag name="kernel.event_listener" event="theme.notifications" method="onListNotifications" />
     </service>
-	
-	<!-- ... -->
+    
+    <!-- ... -->
 </services>
 ```
 

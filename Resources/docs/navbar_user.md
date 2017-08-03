@@ -17,9 +17,9 @@ namespace MyAdminBundle\Model;
 use Avanzu\AdminThemeBundle\Model\UserInterface as ThemeUser
 
 class UserModel implements  ThemeUser {
-	// ...
-	// implement interface methods
-	// ...
+    // ...
+    // implement interface methods
+    // ...
 }
 ```
 ### Event Listener
@@ -35,18 +35,18 @@ use MyAdminBundle\Model\UserModel;
 
 class MyShowUserListener {
 
-	// ...
+    // ...
 
-	public function onShowUser(ShowUserEvent $event) {
+    public function onShowUser(ShowUserEvent $event) {
 
-		$user = $this->getUser();
-		$event->setUser($user);
+        $user = $this->getUser();
+        $event->setUser($user);
 
-	}
+    }
 
-	protected function getUser() {
-		// retrieve your concrete user model or entity
-	}
+    protected function getUser() {
+        // retrieve your concrete user model or entity
+    }
 
 }
 ```
@@ -56,30 +56,30 @@ Finally, you need to attach your new listener to the event system:
 ```xml
 <!-- Resources/config/services.xml -->
 <parameters>
-	<!-- ... -->
-	<parameter key="my_admin_bundle.show_user_listener.class">MyAdminBundle\EventListener\MyShowUserListener</parameter>
-	<!-- ... -->
+    <!-- ... -->
+    <parameter key="my_admin_bundle.show_user_listener.class">MyAdminBundle\EventListener\MyShowUserListener</parameter>
+    <!-- ... -->
 </parameters>
 <services>
-	<!-- ... -->
-	<service id="my_admin_bundle.show_user_listener" class="%my_admin_bundle.show_user_listener.class%">
+    <!-- ... -->
+    <service id="my_admin_bundle.show_user_listener" class="%my_admin_bundle.show_user_listener.class%">
         <tag name="kernel.event_listener" event="theme.navbar_user" method="onShowUser" />
     </service>
-	
-	<!-- ... -->
+    
+    <!-- ... -->
 </services>
 ```
 
 ```yaml
 # Resources/config/services.yml
 parameters:
-	my_admin_bundle.show_user_listener.class: MyAdminBundle\EventListener\MyShowUserListener
+    my_admin_bundle.show_user_listener.class: MyAdminBundle\EventListener\MyShowUserListener
 
 services:
-	my_admin_bundle.show_user_listener:
-		class: %my_admin_bundle.show_user_listener.class%
-		tags:
-			- { name: kernel.event_listener, event: theme.navbar_user, method: onShowUser }
+    my_admin_bundle.show_user_listener:
+        class: %my_admin_bundle.show_user_listener.class%
+        tags:
+            - { name: kernel.event_listener, event: theme.navbar_user, method: onShowUser }
 ```
 
 [1]: component_events.md

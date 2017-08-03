@@ -14,9 +14,9 @@ namespace MyAdminBundle\Model;
 use Avanzu\AdminThemeBundle\Model\MenuItemInterface as ThemeMenuItem;
 
 class MenuItemModel implements ThemeMenuItem {
-	// ...
-	// implement interface methods
-	// ...
+    // ...
+    // implement interface methods
+    // ...
 }
 ```
 The bundle provides the `MenuItemModel` as a ready to use implementation of the `MenuItemInterface`. You can use it to create a menu item
@@ -45,21 +45,21 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MyMenuItemListListener {
 
-	// ...
+    // ...
 
-	public function onSetupMenu(SidebarMenuEvent $event) {
+    public function onSetupMenu(SidebarMenuEvent $event) {
 
-		$request = $event->getRequest();
+        $request = $event->getRequest();
 
         foreach ($this->getMenu($request) as $item) {
             $event->addItem($item);
         }
 
-	}
+    }
 
-	protected function getMenu(Request $request) {
-		// Build your menu here by constructing a MenuItemModel array
-		$menuItems = array(
+    protected function getMenu(Request $request) {
+        // Build your menu here by constructing a MenuItemModel array
+        $menuItems = array(
             $blog = new MenuItemModel('ItemId', 'ItemDisplayName', 'item_symfony_route', array(/* options */), 'iconclasses fa fa-plane')
         );
 
@@ -70,10 +70,10 @@ class MyMenuItemListListener {
 
         // A child with default circle icon
         $blog->addChild(new MenuItemModel('ChildTwoItemId', 'ChildTwoDisplayName', 'child_2_route'));
-		return $this->activateByRoute($request->get('_route'), $menuItems);
-	}
+        return $this->activateByRoute($request->get('_route'), $menuItems);
+    }
 
-	protected function activateByRoute($route, $items) {
+    protected function activateByRoute($route, $items) {
 
         foreach($items as $item) {
             if($item->hasChildren()) {
@@ -98,27 +98,27 @@ Finally, you need to attach your new listener to the event system:
 XML: 
 
 ```xml
-	<!-- Resources/config/services.xml -->
-	<parameters>
-		<!-- ... -->
-		<parameter key="my_admin_bundle.menu_listener.class">MyAdminBundle\EventListener\MyMenuItemListListener</parameter>
-		<!-- ... -->
-	</parameters>
-	<services>
-		<!-- ... -->
-		<service id="my_admin_bundle.menu_listener" class="%my_admin_bundle.menu_listener.class%">
-	        <tag name="kernel.event_listener" event="theme.sidebar_setup_menu" method="onSetupMenu" />
-	    </service>
+    <!-- Resources/config/services.xml -->
+    <parameters>
+        <!-- ... -->
+        <parameter key="my_admin_bundle.menu_listener.class">MyAdminBundle\EventListener\MyMenuItemListListener</parameter>
+        <!-- ... -->
+    </parameters>
+    <services>
+        <!-- ... -->
+        <service id="my_admin_bundle.menu_listener" class="%my_admin_bundle.menu_listener.class%">
+            <tag name="kernel.event_listener" event="theme.sidebar_setup_menu" method="onSetupMenu" />
+        </service>
 
-		<!-- ... -->
-	</services>
+        <!-- ... -->
+    </services>
 ```
 
 YAML: 
 
 ```yaml
-	parameters:
-		# ...
+    parameters:
+        # ...
         my_admin_bundle.menu_listener.class: MyAdminBundle\EventListener\MyMenuItemListListener
     
     services:

@@ -16,27 +16,27 @@ Finally, you need to attach your new listener to the event system:
 XML: 
 
 ```xml
-	<!-- Resources/config/services.xml -->
-	<parameters>
-		<!-- ... -->
-		<parameter key="my_admin_bundle.breadcrumb_listener.class">MyAdminBundle\EventListener\MyMenuItemListListener</parameter>
-		<!-- ... -->
-	</parameters>
-	<services>
-		<!-- ... -->
-		<service id="my_admin_bundle.breadcrumb_listener" class="%my_admin_bundle.breadcrumb_listener.class%">
-	        <tag name="kernel.event_listener" event="theme.breadcrumb" method="onSetupMenu" />
-	    </service>
+    <!-- Resources/config/services.xml -->
+    <parameters>
+        <!-- ... -->
+        <parameter key="my_admin_bundle.breadcrumb_listener.class">MyAdminBundle\EventListener\MyMenuItemListListener</parameter>
+        <!-- ... -->
+    </parameters>
+    <services>
+        <!-- ... -->
+        <service id="my_admin_bundle.breadcrumb_listener" class="%my_admin_bundle.breadcrumb_listener.class%">
+            <tag name="kernel.event_listener" event="theme.breadcrumb" method="onSetupMenu" />
+        </service>
 
-		<!-- ... -->
-	</services>
+        <!-- ... -->
+    </services>
 ```
 
 YAML: 
 
 ```yaml
-	parameters:
-		# ...
+    parameters:
+        # ...
         my_admin_bundle.breadcrumb_listener.class: MyAdminBundle\EventListener\MyMenuItemListListener
     
     services:

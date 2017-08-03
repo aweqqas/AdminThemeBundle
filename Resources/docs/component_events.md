@@ -59,13 +59,13 @@ In order to see some working examples, the bundle comes with a demo implementati
  ```yaml
  # config.yml
  avanzu_admin_theme:
- 	enable_demo: true
+     enable_demo: true
 ```
 and add the routes to your routing configuration: 
 
 ```yaml
 # routing.yml
 avanzu_admin:
-	prefix: /admin # or whichever you like 
+    prefix: /admin # or whichever you like 
     resource: "@AvanzuAdminThemeBundle/Resources/config/routes.yml"
 ```
